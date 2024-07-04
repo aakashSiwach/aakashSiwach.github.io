@@ -3,184 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Aakash</title>
+    <title>Resume - Aakash: RPG Edition</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #2c3e50;
-            margin: 20px;
-            line-height: 1.6;
+            font-family: 'Press Start 2P', cursive;
+            background-color: #0c2461;
+            color: #f5f6fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #1e3799;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            padding: 20px;
         }
         h1, h2, h3 {
-            color: #2c3e50;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
+            color: #f5f6fa;
+            text-align: center;
+            border-bottom: 2px solid #f5f6fa;
+            padding-bottom: 10px;
         }
         p {
             margin: 5px 0;
         }
-        .contact-info, .skills, .achievements, .projects, .education, .experience {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            animation: fadeIn 0.5s ease-out;
+        .info-section {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f5f6fa;
         }
-        .contact-info a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-        .tech-icon {
-            margin-right: 10px;
-            color: #3498db; /* Icon color */
-        }
-        .tech-icon-2 {
+        .icon {
+            color: #f5f6fa;
             font-size: 24px;
             margin-right: 10px;
-            color: #e67e22; /* Icon color */
         }
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .experience, .education, .skills, .achievements {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #3c40c6;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .experience h3, .education h3, .skills h3, .achievements h3 {
+            color: #f5f6fa;
+            border-bottom: 1px solid #f5f6fa;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .achievement-item {
+            list-style-type: none;
+            padding: 5px 0;
         }
     </style>
 </head>
 <body>
 
-    <div class="contact-info">
-        <h1>Aakash</h1>
-        <p><i class="fa fa-envelope tech-icon"></i>Email: <a href="mailto:aakashsiwach855@gmail.com">aakashsiwach855@gmail.com</a></p>
-        <p><i class="fa fa-phone tech-icon"></i>Phone: <a href="tel:+919917754688">+91 991 755 4688</a></p>
-        <p><i class="fa fa-map-marker-alt tech-icon"></i>Location: Meerut, 250221</p>
-        <p><i class="fab fa-github tech-icon"></i>GitHub: <a href="https://github.com/aakashsiwach855">github.com/aakashsiwach855</a></p>
-        <p><i class="fab fa-linkedin tech-icon"></i>LinkedIn: <a href="https://www.linkedin.com/in/aakashsiwach855">linkedin.com/in/aakashsiwach855</a></p>
-    </div>
+    <div class="container">
+        <h1>Aakash's RPG Resume</h1>
 
-    <div class="experience">
-        <h2>Professional Experience</h2>
-        <div>
-            <h3>Software Development Engineer I</h3>
-            <p>Innostax Software Labs Pvt Ltd | 11/2022 - Present</p>
-            <ul>
-                <li>Developed a No-code application that creates and provides backend services, reducing time by aiming for a 25% cost-efficient.</li>
-                <li>TechStack: Node.js, ReactJS, Postgres, AWS.</li>
-                <li>Led efforts for South-African Based Travel Application that reduced complexity by 32% and enhanced customer satisfaction by 78%</li>
-                <li>TechStack: DotNet, Vue, MongoDB.</li>
-                <li>Engineered the backend for global banking services of SriLanka based bank and implemented the payment gateways, reducing time by 20% and costs by 18%.</li>
-                <li>TechStack: Java, Redis, Jenkins, AWS, MySQL, MQ, Hibernate.</li>
-            </ul>
-        </div>
-        
-        <div>
-            <h3>Associate Software Engineer</h3>
-            <p>Innostax Software Labs Pvt Ltd | 05/2022 - 11/2022</p>
-        </div>
-        
-        <div>
-            <h3>Software Developer I</h3>
-            <p>Paramarsh Informatics Pvt Ltd | 01/2022 - 05/2022</p>
-            <ul>
-                <li>Crafted software for Helping NGO, improving applications to support the organization's mission and increasing operational efficiency by 20%.</li>
-                <li>TechStack: CodeIgniter, HTML, CSS, JQuery.</li>
-                <li>Designed solutions for more than 20 NGOs globally.</li>
-                <li>Optimized over 10 web applications, achieving a 12% increase in digital outreach for the foundation and significantly boosting project execution efficiency.</li>
-                <li>TechStack: HTML, CSS, JQuery.</li>
-            </ul>
+        <div class="info-section">
+            <p><i class="icon fas fa-envelope"></i>Email: <a href="mailto:aakashsiwach855@gmail.com">aakashsiwach855@gmail.com</a></p>
+            <p><i class="icon fas fa-phone"></i>Phone: <a href="tel:+919917754688">+91 991 755 4688</a></p>
+            <p><i class="icon fas fa-map-marker-alt"></i>Location: Meerut, 250221</p>
+            <p><i class="icon fab fa-github"></i>GitHub: <a href="https://github.com/aakashsiwach855">github.com/aakashsiwach855</a></p>
+            <p><i class="icon fab fa-linkedin"></i>LinkedIn: <a href="https://www.linkedin.com/in/aakashsiwach855">linkedin.com/in/aakashsiwach855</a></p>
         </div>
 
-        <div>
-            <h3>Software Intern</h3>
-            <p>Paramarsh Informatics Pvt Ltd | 06/2021 - 01/2022</p>
-            <ul>
-                <li>Assisted in developing and maintaining software applications for NGOs.</li>
-                <li>Improved existing web applications to enhance functionality and user experience.</li>
-                <li>TechStack: HTML, CSS, JQuery, CodeIgniter.</li>
-            </ul>
-        </div>
-    </div>
+        <div class="experience">
+            <h2>Quests: Professional Experience</h2>
 
-    <div class="education">
-        <h2><i class="fa fa-graduation-cap tech-icon"></i>Education</h2>
-        <div>
-            <h3>Master of Computer Applications (MCA)</h3>
-            <p>Dr. APJ Abdul Kalam Technical University, Lucknow | 12/2021</p>
-            <ul>
-                <li>8.5 CGPA, With Honours</li>
-                <li>Achieved a position in the top 100 students at the university level.</li>
-            </ul>
-        </div>
-        
-        <div>
-            <h3>Bachelors of Computer Applications (BCA)</h3>
-            <p>Chaudhary Charan Singh University, Meerut | 06/2019</p>
-            <ul>
-                <li>70% with Second rank in college</li>
-                <li>Active Participant in College Events</li>
-            </ul>
-        </div>
-    </div>
+            <div>
+                <h3>Software Development Engineer I</h3>
+                <p>Innostax Software Labs Pvt Ltd | 11/2022 - Present</p>
+                <ul>
+                    <li>Developed a No-code application that creates and provides backend services, reducing time by aiming for a 25% cost-efficient.</li>
+                    <li>TechStack: Node.js, ReactJS, Postgres, AWS.</li>
+                    <li>Led efforts for South-African Based Travel Application that reduced complexity by 32% and enhanced customer satisfaction by 78%</li>
+                    <li>TechStack: DotNet, Vue, MongoDB.</li>
+                    <li>Engineered the backend for global banking services of SriLanka based bank and implemented the payment gateways, reducing time by 20% and costs by 18%.</li>
+                    <li>TechStack: Java, Redis, Jenkins, AWS, MySQL, MQ, Hibernate.</li>
+                </ul>
+            </div>
 
-    <div class="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li><i class="fa fa-java tech-icon"></i>Java</li>
-            <li><i class="fab fa-js tech-icon"></i>JavaScript</li>
-            <li><i class="fa fa-terminal tech-icon"></i>BashScript</li>
-            <li><i class="fa fa-code tech-icon"></i>TypeScript</li>
-            <li><i class="fab fa-react tech-icon"></i>React</li>
-            <li><i class="fab fa-angular tech-icon"></i>Angular</li>
-            <li><i class="fab fa-node-js tech-icon"></i>Node.js</li>
-        </ul>
+            <div>
+                <h3>Associate Software Engineer</h3>
+                <p>Innostax Software Labs Pvt Ltd | 05/2022 - 11/2022</p>
+            </div>
 
-        <div>
-            <h3>Libraries/Frameworks</h3>
-            <ul>
-                <li><i class="fas fa-database tech-icon"></i>ElasticSearch</li>
-                <li><i class="fas fa-server tech-icon"></i>Redis</li>
-                <li><i class="fab fa-docker tech-icon"></i>Docker</li>
-                <li><i class="fas fa-cogs tech-icon"></i>Jenkins</li>
-                <li><i class="fas fa-archive tech-icon"></i>Maven</li>
-                <li><i class="fa fa-vial tech-icon"></i>Mockito</li>
-                <li><i class="fa fa-vials tech-icon"></i>JUnit</li>
-            </ul>
+            <div>
+                <h3>Software Developer I</h3>
+                <p>Paramarsh Informatics Pvt Ltd | 01/2022 - 05/2022</p>
+                <ul>
+                    <li>Crafted software for Helping NGO, improving applications to support the organization's mission and increasing operational efficiency by 20%.</li>
+                    <li>TechStack: CodeIgniter, HTML, CSS, JQuery.</li>
+                    <li>Designed solutions for more than 20 NGOs globally.</li>
+                    <li>Optimized over 10 web applications, achieving a 12% increase in digital outreach for the foundation and significantly boosting project execution efficiency.</li>
+                    <li>TechStack: HTML, CSS, JQuery.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Software Intern</h3>
+                <p>Paramarsh Informatics Pvt Ltd | 06/2021 - 01/2022</p>
+                <ul>
+                    <li>Assisted in developing and maintaining software applications for NGOs.</li>
+                    <li>Improved existing web applications to enhance functionality and user experience.</li>
+                    <li>TechStack: HTML, CSS, JQuery, CodeIgniter.</li>
+                </ul>
+            </div>
         </div>
 
-        <div>
-            <h3>Databases/ORM</h3>
+        <div class="education">
+            <h2>Mission Logs: Education</h2>
+
+            <div>
+                <h3>Master of Computer Applications (MCA)</h3>
+                <p>Dr. APJ Abdul Kalam Technical University, Lucknow | 12/2021</p>
+                <ul>
+                    <li>8.5 CGPA, With Honours</li>
+                    <li>Achieved a position in the top 100 students at the university level.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Bachelors of Computer Applications (BCA)</h3>
+                <p>Chaudhary Charan Singh University, Meerut | 06/2019</p>
+                <ul>
+                    <li>70% with Second rank in college</li>
+                    <li>Active Participant in College Events</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="skills">
+            <h2>Skills: Powers & Abilities</h2>
+
+            <div>
+                <h3>Core Skills</h3>
+                <ul>
+                    <li><i class="icon fab fa-java"></i>Java</li>
+                    <li><i class="icon fab fa-js"></i>JavaScript</li>
+                    <li><i class="icon fas fa-terminal"></i>BashScript</li>
+                    <li><i class="icon fas fa-code"></i>TypeScript</li>
+                    <li><i class="icon fab fa-react"></i>React</li>
+                    <li><i class="icon fab fa-angular"></i>Angular</li>
+                    <li><i class="icon fab fa-node-js"></i>Node.js</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Libraries/Frameworks</h3>
+                <ul>
+                    <li><i class="icon fas fa-database"></i>ElasticSearch</li>
+                    <li><i class="icon fas fa-server"></i>Redis</li>
+                    <li><i class="icon fab fa-docker"></i>Docker</li>
+                    <li><i class="icon fas fa-cogs"></i>Jenkins</li>
+                    <li><i class="icon fas fa-archive"></i>Maven</li>
+                    <li><i class="icon fas fa-vial"></i>Mockito</li>
+                    <li><i class="icon fas fa-vials"></i>JUnit</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Databases/ORM</h3>
+                <ul>
+                    <li><i class="icon fas fa-database"></i>MySQL</li>
+                    <li><i class="icon fas fa-database"></i>Postgres</li>
+                    <li><i class="icon fas fa-database"></i>MongoDB</li>
+                    <li><i class="icon fas fa-microchip"></i>SpringBoot</li>
+                    <li><i class="icon fas fa-cubes"></i>Microservices</li>
+                    <li><i class="icon fas fa-envelope"></i>RabbitMQ</li>
+                    <li><i class="icon fas fa-database"></i>Hibernate</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="achievements">
+            <h2>Achievements: Epic Loot</h2>
             <ul>
-                <li><i class="fas fa-database tech-icon"></i>MySQL</li>
-                <li><i class="fas fa-database tech-icon"></i>Postgres</li>
-                <li><i class="fas fa-database tech-icon"></i>MongoDB</li>
-                <li><i class="fa fa-microchip tech-icon"></i>SpringBoot</li>
-                <li><i class="fa fa-cubes tech-icon"></i>Microservices</li>
-                <li><i class="fa fa-envelope tech-icon"></i>RabbitMQ</li>
-                <li><i class="fa fa-database tech-icon"></i>Hibernate</li>
+                <li>Fast Star Champion - Dec 2022</li>
+                <li>Star of the Month - April 2023</li>
+                <li>Client Hero of the Year - May 2024</li>
+                <li>Ranked in Top 100 in Post Graduation (State Level)</li>
+                <li>Placed 2nd Rank in Graduation (College level)</li>
             </ul>
         </div>
-    </div>
-
-    <div class="achievements">
-        <h2>Achievements</h2>
-        <ul>
-            <li>Fast Star Champion - Dec 2022</li>
-            <li>Star of the Month - April 2023</li>
-            <li>Client Hero of the Year - May 2024</li>
-            <li>Ranked in Top 100 in Post Graduation (State Level)</li>
-            <li>Placed 2nd Rank in Graduation (College level)</li>
-        </ul>
     </div>
 
 </body>

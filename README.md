@@ -29,7 +29,8 @@ Animated, SEO-optimized personal portfolio built with **vanilla HTML, CSS & Java
     ├── css/style.css       # all styling + design tokens
     ├── js/main.js          # animations, nav, theme, terminal, easter eggs
     ├── js/games.js         # the three mini-games
-    └── img/og-cover.svg    # social share image
+    ├── img/og-cover.jpg    # social share image (1200x630)
+    └── img/profile.jpg     # hero / structured-data photo
 ```
 
 ## 🚀 Deploy

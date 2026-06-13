@@ -126,10 +126,20 @@
     typedEl.textContent = phrases[0];
   }
 
-  /* ---------- Download CV (print to PDF) ---------- */
-  const printCV = () => window.print();
-  $("#cvBtn")?.addEventListener("click", printCV);
-  $("#cvBtn2")?.addEventListener("click", printCV);
+  /* ---------- Download CV (PDF file) ---------- */
+  const RESUME_URL = "assets/Aakash_Siwach_Resume.pdf";
+  const downloadCV = () => {
+    const a = document.createElement("a");
+    a.href = RESUME_URL;
+    a.download = "Aakash_Siwach_Resume.pdf";
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    toast("Downloading resume… 📄");
+  };
+  $("#cvBtn")?.addEventListener("click", downloadCV);
+  $("#cvBtn2")?.addEventListener("click", downloadCV);
 
   /* ---------- Contact form (mailto, no backend) ---------- */
   const form = $("#contactForm");

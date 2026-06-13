@@ -163,6 +163,12 @@ header.nav {
   width: 240px; height: 240px; border-radius: 50%; display: grid; place-items: center;
   font-size: 5rem; font-weight: 900; color: #04121a; background: var(--grad);
   box-shadow: 0 0 60px -10px rgba(167, 139, 250, 0.6); position: relative; z-index: 2;
+  padding: 5px; /* gradient ring around photo */
+}
+.avatar img {
+  width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+  object-position: center 18%; /* bias toward face */
+  background: var(--bg-2);
 }
 .orbit { position: absolute; inset: -36px; border: 1px dashed var(--border); border-radius: 50%; animation: spin 22s linear infinite; }
 .orbit.two { inset: -68px; animation-duration: 34s; animation-direction: reverse; }

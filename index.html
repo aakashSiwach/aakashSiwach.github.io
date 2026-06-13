@@ -1,187 +1,396 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Aakash</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #2c3e50;
-            margin: 20px;
-            line-height: 1.6;
-        }
-        h1, h2, h3 {
-            color: #2c3e50;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-        }
-        p {
-            margin: 5px 0;
-        }
-        .contact-info, .skills, .achievements, .projects, .education, .experience {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            animation: fadeIn 0.5s ease-out;
-        }
-        .contact-info a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-        .tech-icon {
-            margin-right: 10px;
-            color: #3498db; /* Icon color */
-        }
-        .tech-icon-2 {
-            font-size: 24px;
-            margin-right: 10px;
-            color: #e67e22; /* Icon color */
-        }
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== Primary SEO ===== -->
+  <title>Aakash Siwach — Full-Stack Software Development Engineer | Java, Node.js, React</title>
+  <meta name="description" content="Aakash Siwach is a Full-Stack Software Development Engineer (SDE) from Meerut, India, with 4+ years building scalable backends, payment gateways and no-code platforms in Java, Node.js, React, and AWS. Open to opportunities." />
+  <meta name="keywords" content="Aakash Siwach, Software Development Engineer, Full Stack Developer, Java Developer, Node.js, ReactJS, AWS, Microservices, Backend Engineer, Meerut, Hire Developer India" />
+  <meta name="author" content="Aakash Siwach" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#0a0e1a" />
+  <link rel="canonical" href="https://aakashsiwach.github.io/" />
+
+  <!-- ===== Open Graph ===== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aakashsiwach.github.io/" />
+  <meta property="og:title" content="Aakash Siwach — Full-Stack Software Development Engineer" />
+  <meta property="og:description" content="4+ years building scalable backends, payment gateways and no-code platforms in Java, Node.js, React & AWS. Open to opportunities." />
+  <meta property="og:image" content="https://aakashsiwach.github.io/assets/img/og-cover.svg" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Aakash Siwach Portfolio" />
+
+  <!-- ===== Twitter ===== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aakash Siwach — Full-Stack Software Development Engineer" />
+  <meta name="twitter:description" content="4+ years building scalable backends, payment gateways & no-code platforms in Java, Node.js, React & AWS." />
+  <meta name="twitter:image" content="https://aakashsiwach.github.io/assets/img/og-cover.svg" />
+
+  <!-- ===== Performance ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- ===== Structured data: Person ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Aakash Siwach",
+    "url": "https://aakashsiwach.github.io/",
+    "image": "https://aakashsiwach.github.io/assets/img/og-cover.svg",
+    "jobTitle": "Software Development Engineer",
+    "email": "mailto:aakashsiwach19@gmail.com",
+    "telephone": "+91-9917754688",
+    "address": { "@type": "PostalAddress", "addressLocality": "Meerut", "postalCode": "250221", "addressCountry": "IN" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Dr. A.P.J. Abdul Kalam Technical University, Lucknow" },
+      { "@type": "CollegeOrUniversity", "name": "Chaudhary Charan Singh University, Meerut" }
+    ],
+    "worksFor": { "@type": "Organization", "name": "Innostax Software Labs Pvt Ltd" },
+    "knowsAbout": ["Java", "Node.js", "ReactJS", "Angular", "AWS", "Microservices", "PostgreSQL", "MongoDB", "Redis", "Docker"],
+    "sameAs": [
+      "https://github.com/aakashSiwach",
+      "https://www.linkedin.com/in/aakashsiwach19"
+    ]
+  }
+  </script>
 </head>
 <body>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div id="progress"></div>
 
-    <div class="contact-info">
-        <h1>Aakash</h1>
-        <p><i class="fa fa-envelope tech-icon"></i>Email: <a href="mailto:aakashsiwach19@gmail.com">aakashsiwach19@gmail.com</a></p>
-        <p><i class="fa fa-phone tech-icon"></i>Phone: <a href="tel:+919917754688">+91 991 775 4688</a></p>
-        <p><i class="fa fa-map-marker-alt tech-icon"></i>Location: Meerut, 250221</p>
-        <p><i class="fab fa-github tech-icon"></i>GitHub: <a href="https://github.com/aakashSiwach">aakashSiwach</a></p>
-        <p><i class="fab fa-linkedin tech-icon"></i>LinkedIn: <a href="https://www.linkedin.com/in/aakashsiwach19">linkedin.com/in/aakashsiwach19</a></p>
+  <!-- ===================== NAV ===================== -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#home" aria-label="Aakash Siwach home">
+        <span class="dot">AS</span> Aakash&nbsp;Siwach
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#games">Play</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-tools">
+        <button class="icon-btn" id="cvBtn" title="Download CV" aria-label="Download CV"><i class="fa-solid fa-download"></i></button>
+        <button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="icon-btn nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
     </div>
+  </header>
 
-    <div class="experience">
-        <h2>Professional Experience</h2>
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero wrap" id="home">
+      <div class="hero-grid">
         <div>
-            <h3>Software Development Engineer I</h3>
-            <p>Innostax Software Labs Pvt Ltd | 11/2022 - Present</p>
-            <ul>
-                <li>Developed a No-code application that creates and provides backend services, reducing time by aiming for a 25% cost-efficient.</li>
-                <li>TechStack: Node.js, ReactJS, Postgres, AWS.</li>
-                <li>Led efforts for South-African Based Travel Application that reduced complexity by 32% and enhanced customer satisfaction by 78%</li>
-                <li>TechStack: DotNet, Vue, MongoDB.</li>
-                <li>Engineered the backend for global banking services of SriLanka based bank and implemented the payment gateways, reducing time by 20% and costs by 18%.</li>
-                <li>TechStack: Java, Redis, Jenkins, AWS, MySQL, MQ, Hibernate.</li>
-            </ul>
+          <span class="badge"><span class="pulse"></span> Open to opportunities</span>
+          <h1>Hi, I'm <span class="grad">Aakash Siwach</span></h1>
+          <p class="typed-line">I build <span class="typed" id="typed"></span><span class="caret">&nbsp;</span></p>
+          <p class="sub">Full-Stack Software Development Engineer with <strong>4+ years</strong> shipping scalable backends, payment gateways and no-code platforms across fintech, travel and social-impact products.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#contact"><i class="fa-solid fa-paper-plane"></i> Hire me</a>
+            <button class="btn btn-ghost" id="cvBtn2"><i class="fa-solid fa-file-arrow-down"></i> Download CV</button>
+            <a class="btn btn-ghost" href="#projects"><i class="fa-solid fa-diagram-project"></i> View work</a>
+          </div>
+          <div class="hero-socials">
+            <a href="https://github.com/aakashSiwach" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/aakashsiwach19" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:aakashsiwach19@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="tel:+919917754688" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+          </div>
         </div>
-        
-        <div>
-            <h3>Associate Software Engineer</h3>
-            <p>Innostax Software Labs Pvt Ltd | 05/2022 - 11/2022</p>
+        <div class="avatar-wrap">
+          <div class="orbit"><div class="chip"><i class="fab fa-java"></i> Java</div></div>
+          <div class="orbit two"><div class="chip"><i class="fab fa-node-js"></i> Node</div></div>
+          <div class="avatar">AS</div>
         </div>
-        
-        <div>
-            <h3>Software Developer I</h3>
-            <p>Paramarsh Informatics Pvt Ltd | 01/2022 - 05/2022</p>
-            <ul>
-                <li>Crafted software for Helping NGO, improving applications to support the organization's mission and increasing operational efficiency by 20%.</li>
-                <li>TechStack: CodeIgniter, HTML, CSS, JQuery.</li>
-                <li>Designed solutions for more than 20 NGOs globally.</li>
-                <li>Optimized over 10 web applications, achieving a 12% increase in digital outreach for the foundation and significantly boosting project execution efficiency.</li>
-                <li>TechStack: HTML, CSS, JQuery.</li>
-            </ul>
-        </div>
+      </div>
+    </section>
 
-        <div>
-            <h3>Software Intern</h3>
-            <p>Paramarsh Informatics Pvt Ltd | 06/2021 - 01/2022</p>
-            <ul>
-                <li>Assisted in developing and maintaining software applications for NGOs.</li>
-                <li>Improved existing web applications to enhance functionality and user experience.</li>
-                <li>TechStack: HTML, CSS, JQuery, CodeIgniter.</li>
-            </ul>
+    <!-- ===================== STATS ===================== -->
+    <section class="wrap" style="padding-top:0;" aria-label="Highlights">
+      <div class="stats">
+        <div class="stat card reveal"><div class="num" data-count="4">0</div><div class="lbl">Years experience</div></div>
+        <div class="stat card reveal"><div class="num" data-count="20" data-suffix="+">0</div><div class="lbl">NGOs served globally</div></div>
+        <div class="stat card reveal"><div class="num" data-count="8.5" data-decimals="1">0</div><div class="lbl">MCA CGPA (Honours)</div></div>
+        <div class="stat card reveal"><div class="num" data-count="3">0</div><div class="lbl">Top awards won</div></div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="wrap" id="about">
+      <div class="reveal">
+        <p class="eyebrow">01 · About</p>
+        <h2 class="section-title">Engineer who ships <span class="grad">measurable impact</span></h2>
+      </div>
+      <div class="about-grid" style="margin-top:26px;">
+        <div class="reveal">
+          <p>I'm a Software Development Engineer at <strong>Innostax Software Labs</strong>, where I've architected backends for a Sri-Lankan bank's global payment services, led a South-African travel platform, and built a no-code backend-as-a-service platform.</p>
+          <p>I care about <strong>clean architecture, performance and cost efficiency</strong> — my work has cut complexity by 32%, boosted customer satisfaction by 78%, and reduced delivery time by up to 25%. I move comfortably across Java, Node.js, React and the AWS stack.</p>
+          <p>Beyond product work, I <strong>build and maintain</strong> <a href="https://neweraworldschool.in/" target="_blank" rel="noopener">neweraworldschool.in</a> — a live school website I run end-to-end. I also enjoy turning ideas into playful interactive experiments (try the <a href="#games">games</a> below 👾).</p>
         </div>
+        <div class="card reveal">
+          <div class="facts">
+            <div class="fact"><i class="fa-solid fa-location-dot"></i><div><strong>Meerut, India</strong><br><small style="color:var(--muted)">250221 · Remote-friendly</small></div></div>
+            <div class="fact"><i class="fa-solid fa-graduation-cap"></i><div><strong>MCA, Honours</strong><br><small style="color:var(--muted)">AKTU · Top 100 state-wide</small></div></div>
+            <div class="fact"><i class="fa-solid fa-briefcase"></i><div><strong>SDE I @ Innostax</strong><br><small style="color:var(--muted)">Fintech · Travel · No-code</small></div></div>
+            <div class="fact"><i class="fa-solid fa-trophy"></i><div><strong>Client Hero of the Year</strong><br><small style="color:var(--muted)">2024</small></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section class="wrap" id="experience">
+      <div class="reveal">
+        <p class="eyebrow">02 · Experience</p>
+        <h2 class="section-title">Where I've <span class="grad">made a dent</span></h2>
+      </div>
+      <div class="timeline">
+        <div class="t-item reveal">
+          <h3>Software Development Engineer I</h3>
+          <p class="t-meta">Nov 2022 — Present</p>
+          <p class="t-co">Innostax Software Labs Pvt Ltd</p>
+          <ul>
+            <li>Built a <strong>no-code platform</strong> that generates backend services, targeting ~25% cost efficiency.</li>
+            <li>Led a South-African travel application, cutting complexity 32% and lifting customer satisfaction 78%.</li>
+            <li>Engineered backend + payment gateways for a Sri-Lankan bank's global services — 20% faster delivery, 18% lower cost.</li>
+          </ul>
+          <div class="stack">
+            <span class="tag">Java</span><span class="tag">Node.js</span><span class="tag">ReactJS</span><span class="tag">Vue</span><span class="tag">.NET</span><span class="tag">Postgres</span><span class="tag">MongoDB</span><span class="tag">Redis</span><span class="tag">AWS</span><span class="tag">Jenkins</span><span class="tag">Hibernate</span>
+          </div>
+        </div>
+        <div class="t-item reveal">
+          <h3>Associate Software Engineer</h3>
+          <p class="t-meta">May 2022 — Nov 2022</p>
+          <p class="t-co">Innostax Software Labs Pvt Ltd</p>
+          <ul><li>Promoted into full SDE responsibilities across client product teams.</li></ul>
+        </div>
+        <div class="t-item reveal">
+          <h3>Software Developer I</h3>
+          <p class="t-meta">Jan 2022 — May 2022</p>
+          <p class="t-co">Paramarsh Informatics Pvt Ltd</p>
+          <ul>
+            <li>Built software for NGOs, increasing operational efficiency ~20%.</li>
+            <li>Designed solutions for 20+ NGOs globally; optimized 10+ web apps for +12% digital outreach.</li>
+          </ul>
+          <div class="stack"><span class="tag">CodeIgniter</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">jQuery</span></div>
+        </div>
+        <div class="t-item reveal">
+          <h3>Software Intern</h3>
+          <p class="t-meta">Jun 2021 — Jan 2022</p>
+          <p class="t-co">Paramarsh Informatics Pvt Ltd</p>
+          <ul><li>Developed & maintained software for NGOs; improved functionality and UX of existing web apps.</li></ul>
+          <div class="stack"><span class="tag">CodeIgniter</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">jQuery</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section class="wrap" id="skills">
+      <div class="reveal">
+        <p class="eyebrow">03 · Skills</p>
+        <h2 class="section-title">The <span class="grad">toolbox</span></h2>
+      </div>
+      <div class="skills-grid">
+        <div class="reveal">
+          <div class="skill-row"><div class="top"><span><i class="fab fa-java"></i>Java / Spring Boot</span><span>90%</span></div><div class="bar"><span data-w="90"></span></div></div>
+          <div class="skill-row"><div class="top"><span><i class="fab fa-node-js"></i>Node.js</span><span>88%</span></div><div class="bar"><span data-w="88"></span></div></div>
+          <div class="skill-row"><div class="top"><span><i class="fab fa-react"></i>React / JS / TS</span><span>85%</span></div><div class="bar"><span data-w="85"></span></div></div>
+          <div class="skill-row"><div class="top"><span><i class="fas fa-database"></i>SQL / NoSQL</span><span>87%</span></div><div class="bar"><span data-w="87"></span></div></div>
+          <div class="skill-row"><div class="top"><span><i class="fab fa-aws"></i>AWS / DevOps</span><span>80%</span></div><div class="bar"><span data-w="80"></span></div></div>
+        </div>
+        <div class="reveal">
+          <div class="chips">
+            <span class="chip-skill"><i class="fab fa-angular"></i>Angular</span>
+            <span class="chip-skill"><i class="fab fa-vuejs"></i>Vue</span>
+            <span class="chip-skill"><i class="fab fa-docker"></i>Docker</span>
+            <span class="chip-skill"><i class="fas fa-server"></i>Redis</span>
+            <span class="chip-skill"><i class="fas fa-magnifying-glass-chart"></i>ElasticSearch</span>
+            <span class="chip-skill"><i class="fas fa-cogs"></i>Jenkins</span>
+            <span class="chip-skill"><i class="fas fa-archive"></i>Maven</span>
+            <span class="chip-skill"><i class="fas fa-cubes"></i>Microservices</span>
+            <span class="chip-skill"><i class="fas fa-envelope-open-text"></i>RabbitMQ / MQ</span>
+            <span class="chip-skill"><i class="fas fa-leaf"></i>Hibernate</span>
+            <span class="chip-skill"><i class="fas fa-vial"></i>JUnit / Mockito</span>
+            <span class="chip-skill"><i class="fas fa-database"></i>MySQL · Postgres · Mongo</span>
+            <span class="chip-skill"><i class="fas fa-terminal"></i>Bash</span>
+            <span class="chip-skill"><i class="fas fa-code-branch"></i>Git / CI-CD</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section class="wrap" id="projects">
+      <div class="reveal">
+        <p class="eyebrow">04 · Projects</p>
+        <h2 class="section-title">Things I've <span class="grad">built & ship</span></h2>
+      </div>
+      <div class="proj-grid" style="margin-top:24px;">
+        <article class="card proj reveal">
+          <span class="badge badge-live"><span class="pulse"></span> Live</span>
+          <h3><span class="ico"><i class="fa-solid fa-school"></i></span> New Era World School</h3>
+          <p>A live school website I <strong>build and maintain end-to-end</strong> — content, structure, performance and ongoing updates for the institution's web presence.</p>
+          <div class="stack"><span class="tag">Web</span><span class="tag">Maintenance</span><span class="tag">SEO</span></div>
+          <div class="links">
+            <a href="https://neweraworldschool.in/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Visit site</a>
+          </div>
+        </article>
+        <article class="card proj reveal">
+          <h3><span class="ico"><i class="fa-solid fa-cubes-stacked"></i></span> No-Code Backend Platform</h3>
+          <p>Platform that auto-generates and provisions backend services, targeting a ~25% cost reduction for teams shipping APIs without boilerplate.</p>
+          <div class="stack"><span class="tag">Node.js</span><span class="tag">ReactJS</span><span class="tag">Postgres</span><span class="tag">AWS</span></div>
+        </article>
+        <article class="card proj reveal">
+          <h3><span class="ico"><i class="fa-solid fa-building-columns"></i></span> Global Banking Backend</h3>
+          <p>Backend and payment-gateway integration for a Sri-Lankan bank's global services — delivered 20% faster at 18% lower cost.</p>
+          <div class="stack"><span class="tag">Java</span><span class="tag">Redis</span><span class="tag">MySQL</span><span class="tag">MQ</span><span class="tag">Hibernate</span></div>
+        </article>
+        <article class="card proj reveal">
+          <h3><span class="ico"><i class="fa-solid fa-plane-departure"></i></span> Travel Platform (ZA)</h3>
+          <p>Led a South-African travel application that cut complexity 32% and lifted customer satisfaction 78%.</p>
+          <div class="stack"><span class="tag">.NET</span><span class="tag">Vue</span><span class="tag">MongoDB</span></div>
+        </article>
+        <article class="card proj reveal">
+          <h3><span class="ico"><i class="fa-solid fa-hand-holding-heart"></i></span> NGO Solutions Suite</h3>
+          <p>Software for 20+ NGOs worldwide; optimized 10+ web apps boosting digital outreach by 12% and operational efficiency by 20%.</p>
+          <div class="stack"><span class="tag">CodeIgniter</span><span class="tag">jQuery</span><span class="tag">HTML/CSS</span></div>
+        </article>
+        <article class="card proj reveal">
+          <h3><span class="ico"><i class="fa-solid fa-gamepad"></i></span> This Portfolio</h3>
+          <p>An animated, SEO-optimized portfolio with canvas effects and three playable mini-games — all hand-built in vanilla JS, deployed on GitHub Pages.</p>
+          <div class="stack"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Canvas</span><span class="tag">Vanilla JS</span></div>
+          <div class="links"><a href="https://github.com/aakashSiwach/aakashSiwach.github.io" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== GAMES ===================== -->
+    <section class="wrap" id="games">
+      <div class="reveal">
+        <p class="eyebrow">05 · Play</p>
+        <h2 class="section-title">Take a break — <span class="grad">play a game</span> 🎮</h2>
+        <p class="lead">Three quick games, built from scratch in JavaScript. Beat your high score (saved in your browser).</p>
+      </div>
+
+      <div class="games-tabs reveal">
+        <button class="tab-btn active" data-game="bug"><i class="fa-solid fa-bug"></i> Bug Squasher</button>
+        <button class="tab-btn" data-game="type"><i class="fa-solid fa-keyboard"></i> Code Typing Test</button>
+        <button class="tab-btn" data-game="memory"><i class="fa-solid fa-clone"></i> Tech Memory Match</button>
+      </div>
+
+      <!-- Bug Squasher -->
+      <div class="game-panel active card reveal" id="game-bug">
+        <div class="game-head">
+          <h3><i class="fa-solid fa-bug"></i> Bug Squasher</h3>
+          <div class="scoreboard">
+            <span>Score: <b id="bug-score">0</b></span>
+            <span>Time: <b id="bug-time">30</b>s</span>
+            <span>Best: <b id="bug-best">0</b></span>
+          </div>
+        </div>
+        <div id="bug-arena">
+          <div class="arena-overlay" id="bug-overlay">
+            <div>
+              <p style="font-size:1.1rem;font-weight:800;margin-bottom:6px;">Squash as many bugs as you can in 30s!</p>
+              <p style="color:var(--muted);margin-bottom:16px;">🐞 = +1 · ⭐ golden bug = +5 (but it's fast)</p>
+              <button class="btn btn-primary" id="bug-start"><i class="fa-solid fa-play"></i> Start</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing test -->
+      <div class="game-panel card reveal" id="game-type">
+        <div class="game-head">
+          <h3><i class="fa-solid fa-keyboard"></i> Code Typing Speed Test</h3>
+          <div class="scoreboard">
+            <span>WPM: <b id="type-wpm">0</b></span>
+            <span>Accuracy: <b id="type-acc">100</b>%</span>
+            <span>Best WPM: <b id="type-best">0</b></span>
+          </div>
+        </div>
+        <div id="type-text">Click “New snippet”, then start typing the code above. Timer starts on your first keystroke.</div>
+        <textarea id="type-input" rows="3" placeholder="Start typing here…" spellcheck="false" disabled></textarea>
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-primary" id="type-new"><i class="fa-solid fa-rotate"></i> New snippet</button>
+          <button class="btn btn-ghost" id="type-reset"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
+        </div>
+      </div>
+
+      <!-- Memory match -->
+      <div class="game-panel card reveal" id="game-memory">
+        <div class="game-head">
+          <h3><i class="fa-solid fa-clone"></i> Tech Memory Match</h3>
+          <div class="scoreboard">
+            <span>Moves: <b id="mem-moves">0</b></span>
+            <span>Pairs: <b id="mem-pairs">0</b>/8</span>
+            <span>Best: <b id="mem-best">—</b></span>
+          </div>
+        </div>
+        <div class="memory-grid" id="mem-grid"></div>
+        <div style="margin-top:16px;"><button class="btn btn-primary" id="mem-new"><i class="fa-solid fa-shuffle"></i> New game</button></div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="wrap" id="contact">
+      <div class="reveal">
+        <p class="eyebrow">06 · Contact</p>
+        <h2 class="section-title">Let's build <span class="grad">something great</span></h2>
+        <p class="lead">I'm <strong style="color:var(--good)">open to full-time and contract roles</strong>. Backend, full-stack or platform work — let's talk.</p>
+      </div>
+      <div class="contact-grid" style="margin-top:24px;">
+        <div class="contact-list reveal">
+          <a href="mailto:aakashsiwach19@gmail.com"><i class="fa-solid fa-envelope"></i><div>Email<small>aakashsiwach19@gmail.com</small></div></a>
+          <a href="tel:+919917754688"><i class="fa-solid fa-phone"></i><div>Phone<small>+91 991 775 4688</small></div></a>
+          <a href="https://www.linkedin.com/in/aakashsiwach19" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i><div>LinkedIn<small>in/aakashsiwach19</small></div></a>
+          <a href="https://github.com/aakashSiwach" target="_blank" rel="noopener"><i class="fab fa-github"></i><div>GitHub<small>@aakashSiwach</small></div></a>
+          <div class="ci"><i class="fa-solid fa-location-dot"></i><div>Location<small>Meerut, India · 250221</small></div></div>
+        </div>
+        <form class="card reveal" id="contactForm" novalidate>
+          <div class="field"><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" required placeholder="Your name" /></div>
+          <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required placeholder="you@company.com" /></div>
+          <div class="field"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" rows="5" required placeholder="Tell me about the role or project…"></textarea></div>
+          <button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© <span id="year"></span> Aakash Siwach · Built with vanilla HTML, CSS & JS · Deployed on GitHub Pages</p>
+      <p class="easter">psst — try the <kbd>↑↑↓↓←→←→BA</kbd> code, or type <code>help</code> after pressing <kbd>~</kbd></p>
     </div>
+  </footer>
 
-    <div class="education">
-        <h2><i class="fa fa-graduation-cap tech-icon"></i>Education</h2>
-        <div>
-            <h3>Master of Computer Applications (MCA)</h3>
-            <p>Dr. APJ Abdul Kalam Technical University, Lucknow | 12/2021</p>
-            <ul>
-                <li>8.5 CGPA, With Honours</li>
-                <li>Achieved a position in the top 100 students at the university level.</li>
-            </ul>
-        </div>
-        
-        <div>
-            <h3>Bachelors of Computer Applications (BCA)</h3>
-            <p>Chaudhary Charan Singh University, Meerut | 06/2019</p>
-            <ul>
-                <li>70% with Second rank in college</li>
-                <li>Active Participant in College Events</li>
-            </ul>
-        </div>
-    </div>
+  <!-- Terminal easter egg -->
+  <div id="terminal" aria-hidden="true">
+    <div class="bar"><span class="b r"></span><span class="b y"></span><span class="b g"></span><span>aakash@portfolio: ~</span></div>
+    <div id="term-body"></div>
+    <div id="term-line"><span class="pl">$</span><input id="term-input" autocomplete="off" spellcheck="false" aria-label="Terminal input" /></div>
+  </div>
 
-    <div class="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li><i class="fa fa-java tech-icon"></i>Java</li>
-            <li><i class="fab fa-js tech-icon"></i>JavaScript</li>
-            <li><i class="fa fa-terminal tech-icon"></i>BashScript</li>
-            <li><i class="fa fa-code tech-icon"></i>TypeScript</li>
-            <li><i class="fab fa-react tech-icon"></i>React</li>
-            <li><i class="fab fa-angular tech-icon"></i>Angular</li>
-            <li><i class="fab fa-node-js tech-icon"></i>Node.js</li>
-        </ul>
+  <div id="toast" role="status" aria-live="polite"></div>
 
-        <div>
-            <h3>Libraries/Frameworks</h3>
-            <ul>
-                <li><i class="fas fa-database tech-icon"></i>ElasticSearch</li>
-                <li><i class="fas fa-server tech-icon"></i>Redis</li>
-                <li><i class="fab fa-docker tech-icon"></i>Docker</li>
-                <li><i class="fas fa-cogs tech-icon"></i>Jenkins</li>
-                <li><i class="fas fa-archive tech-icon"></i>Maven</li>
-                <li><i class="fa fa-vial tech-icon"></i>Mockito</li>
-                <li><i class="fa fa-vials tech-icon"></i>JUnit</li>
-            </ul>
-        </div>
-
-        <div>
-            <h3>Databases/ORM</h3>
-            <ul>
-                <li><i class="fas fa-database tech-icon"></i>MySQL</li>
-                <li><i class="fas fa-database tech-icon"></i>Postgres</li>
-                <li><i class="fas fa-database tech-icon"></i>MongoDB</li>
-                <li><i class="fa fa-microchip tech-icon"></i>SpringBoot</li>
-                <li><i class="fa fa-cubes tech-icon"></i>Microservices</li>
-                <li><i class="fa fa-envelope tech-icon"></i>RabbitMQ</li>
-                <li><i class="fa fa-database tech-icon"></i>Hibernate</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="achievements">
-        <h2>Achievements</h2>
-        <ul>
-            <li>Fast Star Champion - Dec 2022</li>
-            <li>Star of the Month - April 2023</li>
-            <li>Client Hero of the Year - May 2024</li>
-            <li>Ranked in Top 100 in Post Graduation (State Level)</li>
-            <li>Placed 2nd Rank in Graduation (College level)</li>
-        </ul>
-    </div>
-
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/games.js" defer></script>
 </body>
 </html>

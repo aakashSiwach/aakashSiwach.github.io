@@ -848,6 +848,179 @@ var QUESTIONS = [
   answerEn: "<p>You can climb 1 or 2 steps at a time. Ways to reach step n = ways(n-1) + ways(n-2) — the <b>Fibonacci</b> recurrence. Solve bottom-up with two variables instead of recursion to avoid exponential time. O(n) time, O(1) space.</p>",
   answerHi: "<p>एक बार में 1 या 2 step चढ़ सकते हैं। Step n तक ways = ways(n-1) + ways(n-2) — यानी <b>Fibonacci</b> recurrence। Recursion की जगह bottom-up दो variables से हल करो ताकि exponential time न हो। O(n) time, O(1) space।</p>",
   code: "int climbStairs(int n) {\n    int a = 1, b = 1;\n    for (int i = 2; i <= n; i++) {\n        int c = a + b;\n        a = b; b = c;\n    }\n    return b;\n}"
+},
+
+/* ============================ OUTPUT & DEBUGGING (more) ============================ */
+{
+  id: "out-15", category: "Output & Debugging", difficulty: "hard",
+  question: "String interning & compile-time folding — which are equal?",
+  codeTop: "String a = \"ab\";\nString b = \"a\" + \"b\";        // both literals → folded at compile time\nString d = \"a\";\nString e = d + \"b\";           // variable → built at runtime\n\nSystem.out.println(a == b); // ?\nSystem.out.println(a == e); // ?\nSystem.out.println(a == e.intern()); // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>true</code>, <code class='inline'>false</code>, <code class='inline'>true</code>.</p><p><b>Why:</b> <code class='inline'>\"a\" + \"b\"</code> is a <b>compile-time constant</b>, folded to the literal <code class='inline'>\"ab\"</code> in the pool → same object as <code class='inline'>a</code>. But <code class='inline'>d + \"b\"</code> uses a <b>variable</b>, so it's built at runtime as a <b>new</b> heap object → <code class='inline'>==</code> false. <code class='inline'>.intern()</code> returns the pooled instance → equal again.</p><p><b>Mistake:</b> assuming every concatenation yields the same reference. Only compile-time constants are pooled.</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>true</code>, <code class='inline'>false</code>, <code class='inline'>true</code>।</p><p><b>क्यों:</b> <code class='inline'>\"a\" + \"b\"</code> <b>compile-time constant</b> है, pool में <code class='inline'>\"ab\"</code> literal बन जाता है → <code class='inline'>a</code> वाला ही object। पर <code class='inline'>d + \"b\"</code> <b>variable</b> use करता है, इसलिए runtime पर <b>नया</b> heap object → <code class='inline'>==</code> false। <code class='inline'>.intern()</code> pooled instance लौटाता है → फिर equal।</p><p><b>गलती:</b> हर concatenation से same reference मान लेना। सिर्फ़ compile-time constants pool होते हैं।</p>"
+},
+{
+  id: "out-16", category: "Output & Debugging", difficulty: "medium",
+  question: "String concatenation in a loop — what's the hidden cost?",
+  codeTop: "String s = \"\";\nfor (int i = 0; i < 5; i++) {\n    s += i;   // creates a NEW String each time\n}\nSystem.out.println(s); // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>01234</code> (correct result).</p><p><b>The mistake is performance:</b> Strings are immutable, so each <code class='inline'>s += i</code> allocates a brand-new String and copies everything — O(n²) time and lots of garbage. Fine for 5, terrible for thousands.</p><p><b>Fix:</b> use a <code class='inline'>StringBuilder</code> and <code class='inline'>append()</code> in the loop.</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>01234</code> (result सही है)।</p><p><b>गलती performance की है:</b> Strings immutable हैं, इसलिए हर <code class='inline'>s += i</code> नया String बनाकर सब copy करता है — O(n²) time और बहुत garbage। 5 के लिए ठीक, हज़ारों के लिए बहुत बुरा।</p><p><b>Fix:</b> loop में <code class='inline'>StringBuilder</code> + <code class='inline'>append()</code>।</p>"
+},
+{
+  id: "out-17", category: "Output & Debugging", difficulty: "medium",
+  question: "char arithmetic — why isn't the output 'AB'?",
+  codeTop: "System.out.println('A' + 'B');       // ?\nSystem.out.println(\"\" + 'A' + 'B');  // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>131</code>, then <code class='inline'>AB</code>.</p><p><b>Why:</b> <code class='inline'>'A' + 'B'</code> promotes both chars to <b>int</b> (65 + 66 = 131) — it's numeric addition, not string joining. Prefixing with <code class='inline'>\"\"</code> makes it <b>string concatenation</b>, so each char is appended as text → 'AB'.</p><p><b>Mistake:</b> assuming <code class='inline'>+</code> on chars concatenates. It only concatenates when a String is involved.</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>131</code>, फिर <code class='inline'>AB</code>।</p><p><b>क्यों:</b> <code class='inline'>'A' + 'B'</code> दोनों chars को <b>int</b> में promote करता है (65 + 66 = 131) — ये numeric addition है, string जोड़ना नहीं। आगे <code class='inline'>\"\"</code> लगाने से <b>string concatenation</b> होती है → 'AB'।</p><p><b>गलती:</b> chars पर <code class='inline'>+</code> को concatenation मानना। ये सिर्फ़ तब जोड़ता है जब String शामिल हो।</p>"
+},
+{
+  id: "out-18", category: "Output & Debugging", difficulty: "hard",
+  question: "Ternary operator numeric promotion — why 1.0 not 1?",
+  codeTop: "Object o = true ? Integer.valueOf(1) : Double.valueOf(2.0);\nSystem.out.println(o); // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>1.0</code></p><p><b>Why:</b> When a ternary has an <code class='inline'>Integer</code> and a <code class='inline'>Double</code> branch, Java applies <b>binary numeric promotion</b> to a common type — <b>both are unboxed and promoted to double</b> before the result. So even though the true branch is chosen, <code class='inline'>1</code> becomes <code class='inline'>1.0</code>.</p><p><b>Mistake:</b> assuming the branch type is preserved. Mixed numeric types in <code class='inline'>?:</code> get promoted.</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>1.0</code></p><p><b>क्यों:</b> जब ternary की एक branch <code class='inline'>Integer</code> और दूसरी <code class='inline'>Double</code> हो, तो Java <b>binary numeric promotion</b> से common type निकालता है — <b>दोनों unbox होकर double बन जाते हैं</b>। इसलिए true branch चुनने पर भी <code class='inline'>1</code> → <code class='inline'>1.0</code>।</p><p><b>गलती:</b> branch का type बना रहेगा मान लेना। <code class='inline'>?:</code> में mixed numeric types promote होते हैं।</p>"
+},
+{
+  id: "out-19", category: "Output & Debugging", difficulty: "hard",
+  question: "Initialization order — static blocks, instance blocks, constructors.",
+  codeTop: "class A {\n    static { System.out.println(\"A static\"); }\n    { System.out.println(\"A instance\"); }\n    A(){ System.out.println(\"A ctor\"); }\n}\nclass B extends A {\n    static { System.out.println(\"B static\"); }\n    { System.out.println(\"B instance\"); }\n    B(){ System.out.println(\"B ctor\"); }\n}\nnew B();",
+  answerEn: "<p><b>Output:</b></p><pre style='background:transparent;color:inherit;padding:0;margin:4px 0'>A static\nB static\nA instance\nA ctor\nB instance\nB ctor</pre><p><b>Why:</b> Static blocks run <b>once</b>, when the class loads, parent before child. Then per object: parent's <b>instance block → constructor</b>, then child's instance block → constructor. Static → parent-instance → parent-ctor → child-instance → child-ctor.</p>",
+  answerHi: "<p><b>Output:</b></p><pre style='background:transparent;color:inherit;padding:0;margin:4px 0'>A static\nB static\nA instance\nA ctor\nB instance\nB ctor</pre><p><b>क्यों:</b> Static blocks <b>एक बार</b> चलते हैं (class load पर), parent पहले फिर child। फिर हर object पर: parent का <b>instance block → constructor</b>, फिर child का instance block → constructor।</p>"
+},
+{
+  id: "out-20", category: "Output & Debugging", difficulty: "medium",
+  question: "Implicit super() — which constructor runs first?",
+  codeTop: "class Parent { Parent(){ System.out.println(\"Parent()\"); } }\nclass Child extends Parent {\n    Child(){ System.out.println(\"Child()\"); }\n}\nnew Child();",
+  answerEn: "<p><b>Output:</b> <code class='inline'>Parent()</code> then <code class='inline'>Child()</code>.</p><p><b>Why:</b> The compiler inserts an implicit <code class='inline'>super()</code> as the first line of every constructor, so the <b>parent constructor always runs first</b>.</p><p><b>Common trap:</b> if Parent has <b>only a parameterized</b> constructor (no no-arg one), Child must call <code class='inline'>super(args)</code> explicitly — otherwise it <b>won't compile</b>.</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>Parent()</code> फिर <code class='inline'>Child()</code>।</p><p><b>क्यों:</b> Compiler हर constructor की पहली line में implicit <code class='inline'>super()</code> डालता है, इसलिए <b>parent constructor हमेशा पहले</b> चलता है।</p><p><b>Trap:</b> अगर Parent में <b>सिर्फ़ parameterized</b> constructor हो (no-arg नहीं), तो Child को <code class='inline'>super(args)</code> खुद call करना होगा — वरना <b>compile नहीं</b> होगा।</p>"
+},
+{
+  id: "out-21", category: "Output & Debugging", difficulty: "hard",
+  question: "Are private methods overridden? What prints?",
+  codeTop: "class Parent {\n    private void show(){ System.out.println(\"Parent\"); }\n    public void call(){ show(); }\n}\nclass Child extends Parent {\n    private void show(){ System.out.println(\"Child\"); }\n}\nnew Child().call(); // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>Parent</code></p><p><b>Why:</b> <b>private methods are not polymorphic</b> — they aren't inherited or overridden. Inside <code class='inline'>call()</code>, <code class='inline'>show()</code> is bound to <b>Parent.show()</b> at compile time. Child's <code class='inline'>show()</code> is an unrelated, separate method.</p><p><b>Mistake:</b> expecting private methods to override. Only accessible instance methods participate in dynamic dispatch.</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>Parent</code></p><p><b>क्यों:</b> <b>private methods polymorphic नहीं</b> होते — न inherit होते, न override। <code class='inline'>call()</code> के अंदर <code class='inline'>show()</code> compile time पर <b>Parent.show()</b> से bind है। Child का <code class='inline'>show()</code> अलग, असंबंधित method है।</p><p><b>गलती:</b> private methods के override होने की उम्मीद। सिर्फ़ accessible instance methods dynamic dispatch में आते हैं।</p>"
+},
+{
+  id: "out-22", category: "Output & Debugging", difficulty: "medium",
+  question: "Overloaded methods with null — which is called?",
+  codeTop: "void f(Object o){ System.out.println(\"Object\"); }\nvoid f(String s){ System.out.println(\"String\"); }\n\nf(null); // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>String</code></p><p><b>Why:</b> Overload resolution happens at <b>compile time</b> and picks the <b>most specific</b> applicable type. <code class='inline'>String</code> is more specific than <code class='inline'>Object</code>, and <code class='inline'>null</code> is assignable to both, so <code class='inline'>f(String)</code> wins.</p><p><b>Note:</b> if there were two equally-specific overloads (e.g. <code class='inline'>String</code> and <code class='inline'>Integer</code>), <code class='inline'>f(null)</code> would be a <b>compile error</b> (ambiguous).</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>String</code></p><p><b>क्यों:</b> Overload resolution <b>compile time</b> पर होता है और <b>most specific</b> applicable type चुनता है। <code class='inline'>String</code>, <code class='inline'>Object</code> से ज़्यादा specific है, और <code class='inline'>null</code> दोनों को assignable है, इसलिए <code class='inline'>f(String)</code> जीतता है।</p><p><b>ध्यान:</b> अगर दो equally-specific overloads हों (जैसे <code class='inline'>String</code> और <code class='inline'>Integer</code>), तो <code class='inline'>f(null)</code> <b>compile error</b> (ambiguous)।</p>"
+},
+{
+  id: "out-23", category: "Output & Debugging", difficulty: "hard",
+  question: "Mutating a HashMap key after insertion — what happens?",
+  codeTop: "Map<List<Integer>, String> m = new HashMap<>();\nList<Integer> key = new ArrayList<>(List.of(1, 2));\nm.put(key, \"value\");\n\nkey.add(3);                    // mutate the key AFTER putting\nSystem.out.println(m.get(key)); // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>null</code></p><p><b>Why:</b> The map stored the entry in a bucket based on the key's <b>hashCode at insert time</b>. Adding <code class='inline'>3</code> changes the list's hashCode, so <code class='inline'>get()</code> now looks in a <b>different bucket</b> and can't find it — the entry is effectively lost.</p><p><b>Mistake:</b> using <b>mutable objects as map/set keys</b>. Keys must be immutable (or never mutated while in the map).</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>null</code></p><p><b>क्यों:</b> Map ने entry को key के <b>insert-time hashCode</b> के bucket में रखा था। <code class='inline'>3</code> add करने से list का hashCode बदल गया, इसलिए <code class='inline'>get()</code> अब <b>दूसरे bucket</b> में ढूँढता है और नहीं मिलता — entry खो गई।</p><p><b>गलती:</b> <b>mutable objects को map/set की key</b> बनाना। Keys immutable होनी चाहिए (या map में रहते हुए कभी mutate न हों)।</p>"
+},
+{
+  id: "out-24", category: "Output & Debugging", difficulty: "hard",
+  question: "Is Java pass-by-value or pass-by-reference?",
+  codeTop: "static void modify(StringBuilder sb, String s) {\n    sb.append(\" world\"); // mutates the shared object\n    s = s + \" world\";    // reassigns the LOCAL copy only\n}\nStringBuilder sb = new StringBuilder(\"hello\");\nString s = \"hello\";\nmodify(sb, s);\nSystem.out.println(sb); // ?\nSystem.out.println(s);  // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>hello world</code>, then <code class='inline'>hello</code>.</p><p><b>Why:</b> Java is always <b>pass-by-value</b> — the method gets a <b>copy of the reference</b>. Calling <code class='inline'>sb.append()</code> mutates the <b>same object</b> both refer to (visible to the caller). But <code class='inline'>s = s + ...</code> just reassigns the local copy; the caller's <code class='inline'>s</code> is untouched.</p><p><b>Mistake:</b> thinking Java passes objects by reference. It passes references by value.</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>hello world</code>, फिर <code class='inline'>hello</code>।</p><p><b>क्यों:</b> Java हमेशा <b>pass-by-value</b> है — method को <b>reference की copy</b> मिलती है। <code class='inline'>sb.append()</code> उसी <b>shared object</b> को mutate करता है (caller को दिखता है)। पर <code class='inline'>s = s + ...</code> सिर्फ़ local copy reassign करता है; caller का <code class='inline'>s</code> वैसा ही।</p><p><b>गलती:</b> Java को pass-by-reference समझना। ये references को value से pass करता है।</p>"
+},
+{
+  id: "out-25", category: "Output & Debugging", difficulty: "easy",
+  question: "What are the default values of array elements?",
+  codeTop: "int[] a = new int[3];\nboolean[] b = new boolean[2];\nString[] s = new String[2];\nSystem.out.println(a[0] + \" \" + b[0] + \" \" + s[0]); // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>0 false null</code></p><p><b>Why:</b> Array elements are <b>auto-initialized to their type's default</b>: numeric → <code class='inline'>0</code> / <code class='inline'>0.0</code>, boolean → <code class='inline'>false</code>, object/reference (like String) → <code class='inline'>null</code>.</p><p><b>Mistake:</b> assuming arrays contain garbage or must be manually filled — and then hitting a <code class='inline'>NullPointerException</code> on <code class='inline'>s[0]</code> if you call a method on it.</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>0 false null</code></p><p><b>क्यों:</b> Array elements अपने type के <b>default value से auto-initialize</b> होते हैं: numeric → <code class='inline'>0</code>/<code class='inline'>0.0</code>, boolean → <code class='inline'>false</code>, object/reference (जैसे String) → <code class='inline'>null</code>।</p><p><b>गलती:</b> array में garbage मानना — और फिर <code class='inline'>s[0]</code> पर method call करने पर <code class='inline'>NullPointerException</code>।</p>"
+},
+{
+  id: "out-26", category: "Output & Debugging", difficulty: "hard",
+  question: "clone() on a 2D array — shallow or deep?",
+  codeTop: "int[][] grid = { {1, 2}, {3, 4} };\nint[][] copy = grid.clone();  // shallow copy\ncopy[0][0] = 99;\nSystem.out.println(grid[0][0]); // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>99</code></p><p><b>Why:</b> <code class='inline'>clone()</code> on a 2D array is a <b>shallow copy</b> — it copies the outer array, but the inner arrays are the <b>same references</b>. So <code class='inline'>copy[0]</code> and <code class='inline'>grid[0]</code> point to the same row, and the change is visible in both.</p><p><b>Fix:</b> deep-copy each row: <code class='inline'>for (int i=0;i&lt;grid.length;i++) copy[i] = grid[i].clone();</code></p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>99</code></p><p><b>क्यों:</b> 2D array पर <code class='inline'>clone()</code> <b>shallow copy</b> है — outer array copy होता है, पर inner arrays <b>same references</b> रहते हैं। इसलिए <code class='inline'>copy[0]</code> और <code class='inline'>grid[0]</code> एक ही row की ओर, बदलाव दोनों में।</p><p><b>Fix:</b> हर row deep-copy करो: <code class='inline'>for (int i=0;i&lt;grid.length;i++) copy[i] = grid[i].clone();</code></p>"
+},
+{
+  id: "out-27", category: "Output & Debugging", difficulty: "medium",
+  question: "Does 'final' make an array immutable?",
+  codeTop: "final int[] arr = {1, 2, 3};\narr[0] = 99;          // allowed?\n// arr = new int[2];  // ?\nSystem.out.println(arr[0]); // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>99</code> (the element change is allowed).</p><p><b>Why:</b> <code class='inline'>final</code> makes the <b>reference</b> constant, not the object. You can't <b>reassign</b> <code class='inline'>arr</code> (that line would be a compile error), but you <b>can mutate its contents</b>.</p><p><b>Mistake:</b> equating <code class='inline'>final</code> with immutable. For true immutability use unmodifiable collections or defensive copies.</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>99</code> (element बदलना allowed)।</p><p><b>क्यों:</b> <code class='inline'>final</code> <b>reference</b> को constant बनाता है, object को नहीं। <code class='inline'>arr</code> को <b>reassign</b> नहीं कर सकते (वो line compile error), पर <b>contents mutate</b> कर सकते हैं।</p><p><b>गलती:</b> <code class='inline'>final</code> को immutable समझना। सच में immutable के लिए unmodifiable collections या defensive copy।</p>"
+},
+{
+  id: "out-28", category: "Output & Debugging", difficulty: "easy",
+  question: "static variable shared across objects — what's the count?",
+  codeTop: "class Counter {\n    static int count = 0;\n    Counter(){ count++; }\n}\nnew Counter(); new Counter(); new Counter();\nSystem.out.println(Counter.count); // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>3</code></p><p><b>Why:</b> A <code class='inline'>static</code> field belongs to the <b>class, not each object</b> — there's one shared copy. Every constructor increments the same <code class='inline'>count</code>, so after three instances it's 3.</p><p><b>Mistake:</b> expecting each object to have its own <code class='inline'>count</code> (that would need an instance field).</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>3</code></p><p><b>क्यों:</b> <code class='inline'>static</code> field <b>class का होता है, हर object का नहीं</b> — एक ही shared copy। हर constructor उसी <code class='inline'>count</code> को बढ़ाता है, इसलिए तीन instances के बाद 3।</p><p><b>गलती:</b> हर object का अपना <code class='inline'>count</code> मान लेना (उसके लिए instance field चाहिए)।</p>"
+},
+
+/* ============================ CONCURRENCY & THREADS (output puzzles) ============================ */
+{
+  id: "conc-1", category: "Concurrency & Threads", difficulty: "easy",
+  question: "run() vs start() — how many threads actually run?",
+  codeTop: "Runnable task = () -> System.out.println(Thread.currentThread().getName());\nThread t = new Thread(task);\n\nt.run();   // ?\nt.start(); // ?",
+  answerEn: "<p><b>Output:</b> <code class='inline'>main</code>, then <code class='inline'>Thread-0</code>.</p><p><b>Why:</b> <code class='inline'>t.run()</code> is just an ordinary method call — it runs on the <b>current (main) thread</b>, no new thread is created. <code class='inline'>t.start()</code> asks the JVM to spawn a <b>new thread</b> that then calls run().</p><p><b>Mistake:</b> calling <code class='inline'>run()</code> expecting concurrency. Always use <code class='inline'>start()</code>.</p>",
+  answerHi: "<p><b>Output:</b> <code class='inline'>main</code>, फिर <code class='inline'>Thread-0</code>।</p><p><b>क्यों:</b> <code class='inline'>t.run()</code> सिर्फ़ एक साधारण method call है — <b>current (main) thread</b> पर चलता है, कोई नया thread नहीं बनता। <code class='inline'>t.start()</code> JVM से <b>नया thread</b> बनवाता है जो फिर run() call करता है।</p><p><b>गलती:</b> <code class='inline'>run()</code> से concurrency की उम्मीद। हमेशा <code class='inline'>start()</code>।</p>"
+},
+{
+  id: "conc-2", category: "Concurrency & Threads", difficulty: "hard",
+  question: "Race condition: why is the count less than 2000?",
+  codeTop: "int[] count = {0};\nRunnable r = () -> { for (int i = 0; i < 1000; i++) count[0]++; };\nThread t1 = new Thread(r), t2 = new Thread(r);\nt1.start(); t2.start();\nt1.join(); t2.join();\nSystem.out.println(count[0]); // ?",
+  answerEn: "<p><b>Output:</b> often <b>less than 2000</b> (e.g. 1837) and <b>non-deterministic</b>.</p><p><b>Why:</b> <code class='inline'>count[0]++</code> is really <b>read → increment → write</b> (three steps). Two threads can read the same value and both write back the same result — a <b>lost update</b> (race condition).</p><p><b>Fix:</b> use <code class='inline'>AtomicInteger.incrementAndGet()</code>, a <code class='inline'>synchronized</code> block, or a lock.</p>",
+  answerHi: "<p><b>Output:</b> अक्सर <b>2000 से कम</b> (जैसे 1837) और <b>non-deterministic</b>।</p><p><b>क्यों:</b> <code class='inline'>count[0]++</code> असल में <b>read → increment → write</b> (तीन steps) है। दो threads same value पढ़कर same result लिख सकते हैं — <b>lost update</b> (race condition)।</p><p><b>Fix:</b> <code class='inline'>AtomicInteger.incrementAndGet()</code>, <code class='inline'>synchronized</code> block, या lock।</p>"
+},
+{
+  id: "conc-3", category: "Concurrency & Threads", difficulty: "hard",
+  question: "Missing volatile — why might this loop never end?",
+  codeTop: "class Worker {\n    boolean running = true;   // NOT volatile\n    void start() throws InterruptedException {\n        new Thread(() -> { while (running) { /* spin */ } }).start();\n        Thread.sleep(100);\n        running = false;      // may never be seen by the thread\n    }\n}",
+  answerEn: "<p><b>Behaviour:</b> the worker thread may <b>loop forever</b>, even after <code class='inline'>running = false</code>.</p><p><b>Why:</b> without <code class='inline'>volatile</code>, there's no <b>visibility</b> guarantee — the worker thread can cache <code class='inline'>running</code> in a register and never see the main thread's update (the JIT may even hoist it out of the loop).</p><p><b>Fix:</b> declare <code class='inline'>volatile boolean running</code> so writes are immediately visible to all threads.</p>",
+  answerHi: "<p><b>Behaviour:</b> worker thread <code class='inline'>running = false</code> के बाद भी <b>हमेशा loop</b> कर सकता है।</p><p><b>क्यों:</b> <code class='inline'>volatile</code> बिना <b>visibility</b> की guarantee नहीं — worker thread <code class='inline'>running</code> को register में cache करके main thread का update कभी न देखे (JIT loop से बाहर भी निकाल सकता है)।</p><p><b>Fix:</b> <code class='inline'>volatile boolean running</code> declare करो ताकि writes सभी threads को तुरंत दिखें।</p>"
+},
+{
+  id: "conc-4", category: "Concurrency & Threads", difficulty: "hard",
+  question: "Spot the deadlock.",
+  codeTop: "// Thread 1\nsynchronized (lockA) {\n    synchronized (lockB) { /* work */ }\n}\n// Thread 2\nsynchronized (lockB) {\n    synchronized (lockA) { /* work */ }\n}",
+  answerEn: "<p><b>Behaviour:</b> the program can <b>hang forever</b> (deadlock).</p><p><b>Why:</b> Thread 1 holds <code class='inline'>lockA</code> and waits for <code class='inline'>lockB</code>; Thread 2 holds <code class='inline'>lockB</code> and waits for <code class='inline'>lockA</code>. Neither can proceed — a circular wait.</p><p><b>Fix:</b> always acquire locks in the <b>same global order</b> (e.g. always A then B), or use <code class='inline'>tryLock()</code> with a timeout to back off.</p>",
+  answerHi: "<p><b>Behaviour:</b> program <b>हमेशा के लिए अटक</b> सकता है (deadlock)।</p><p><b>क्यों:</b> Thread 1 <code class='inline'>lockA</code> पकड़े <code class='inline'>lockB</code> का इंतज़ार करता है; Thread 2 <code class='inline'>lockB</code> पकड़े <code class='inline'>lockA</code> का — circular wait, कोई आगे नहीं बढ़ पाता।</p><p><b>Fix:</b> locks हमेशा <b>same global order</b> में लो (जैसे हमेशा A फिर B), या <code class='inline'>tryLock()</code> + timeout।</p>"
+},
+{
+  id: "conc-5", category: "Concurrency & Threads", difficulty: "medium",
+  question: "AtomicInteger — does this fix the race?",
+  codeTop: "AtomicInteger count = new AtomicInteger(0);\nRunnable r = () -> { for (int i = 0; i < 1000; i++) count.incrementAndGet(); };\nThread t1 = new Thread(r), t2 = new Thread(r);\nt1.start(); t2.start(); t1.join(); t2.join();\nSystem.out.println(count.get()); // ?",
+  answerEn: "<p><b>Output:</b> always <code class='inline'>2000</code> (correct, deterministic).</p><p><b>Why:</b> <code class='inline'>incrementAndGet()</code> is <b>atomic</b> — implemented with a lock-free CAS (compare-and-swap) loop, so concurrent increments can't lose updates. This is the fix for the earlier race condition, without the overhead of a lock.</p>",
+  answerHi: "<p><b>Output:</b> हमेशा <code class='inline'>2000</code> (सही, deterministic)।</p><p><b>क्यों:</b> <code class='inline'>incrementAndGet()</code> <b>atomic</b> है — lock-free CAS (compare-and-swap) से, इसलिए concurrent increments में updates नहीं खोते। ये पिछली race condition का fix है, बिना lock के overhead के।</p>"
+},
+{
+  id: "conc-6", category: "Concurrency & Threads", difficulty: "hard",
+  question: "Sharing a SimpleDateFormat across threads — what breaks?",
+  codeTop: "static final SimpleDateFormat SDF = new SimpleDateFormat(\"yyyy-MM-dd\");\n// many threads call:\nString out = SDF.format(new Date());",
+  answerEn: "<p><b>Behaviour:</b> under concurrency you get <b>garbled dates</b> or intermittent exceptions (e.g. <code class='inline'>NumberFormatException</code> / <code class='inline'>ArrayIndexOutOfBounds</code>).</p><p><b>Why:</b> <code class='inline'>SimpleDateFormat</code> is <b>mutable and not thread-safe</b> — it keeps internal state (a Calendar) that threads corrupt when used concurrently.</p><p><b>Fix:</b> use the thread-safe <code class='inline'>java.time.DateTimeFormatter</code>, or give each thread its own instance via <code class='inline'>ThreadLocal</code>.</p>",
+  answerHi: "<p><b>Behaviour:</b> concurrency में <b>गलत dates</b> या बीच-बीच में exceptions (जैसे <code class='inline'>NumberFormatException</code>)।</p><p><b>क्यों:</b> <code class='inline'>SimpleDateFormat</code> <b>mutable और thread-safe नहीं</b> — इसका internal state (Calendar) concurrent use में corrupt होता है।</p><p><b>Fix:</b> thread-safe <code class='inline'>java.time.DateTimeFormatter</code> use करो, या हर thread को <code class='inline'>ThreadLocal</code> से अलग instance दो।</p>"
+},
+{
+  id: "conc-7", category: "Concurrency & Threads", difficulty: "medium",
+  question: "Why doesn't the program exit? (ExecutorService)",
+  codeTop: "ExecutorService pool = Executors.newFixedThreadPool(2);\npool.submit(() -> System.out.println(\"done\"));\n// (no pool.shutdown())\n// main() ends here",
+  answerEn: "<p><b>Behaviour:</b> it prints <code class='inline'>done</code> but the <b>JVM never exits</b> — the program hangs.</p><p><b>Why:</b> thread-pool worker threads are <b>non-daemon</b> by default, so the JVM stays alive as long as they exist, even after <code class='inline'>main</code> finishes.</p><p><b>Fix:</b> call <code class='inline'>pool.shutdown()</code> (and optionally <code class='inline'>awaitTermination</code>) when done.</p>",
+  answerHi: "<p><b>Behaviour:</b> <code class='inline'>done</code> print होता है पर <b>JVM बंद नहीं होता</b> — program अटक जाता है।</p><p><b>क्यों:</b> thread-pool के worker threads default में <b>non-daemon</b> होते हैं, इसलिए <code class='inline'>main</code> खत्म होने पर भी JVM ज़िंदा रहता है।</p><p><b>Fix:</b> काम पूरा होने पर <code class='inline'>pool.shutdown()</code> (और ज़रूरत हो तो <code class='inline'>awaitTermination</code>) call करो।</p>"
+},
+{
+  id: "conc-8", category: "Concurrency & Threads", difficulty: "hard",
+  question: "Double-checked locking without volatile — what's the bug?",
+  codeTop: "class Singleton {\n    private static Singleton instance;      // NOT volatile\n    static Singleton get() {\n        if (instance == null) {\n            synchronized (Singleton.class) {\n                if (instance == null)\n                    instance = new Singleton();\n            }\n        }\n        return instance;\n    }\n}",
+  answerEn: "<p><b>Bug:</b> another thread can receive a <b>partially-constructed</b> Singleton.</p><p><b>Why:</b> <code class='inline'>instance = new Singleton()</code> isn't atomic — the write to <code class='inline'>instance</code> can be <b>reordered</b> before the constructor finishes. Without <code class='inline'>volatile</code>, a second thread may see a non-null but not-yet-initialized object.</p><p><b>Fix:</b> declare <code class='inline'>private static volatile Singleton instance;</code> (or better, use an enum / holder-class singleton).</p>",
+  answerHi: "<p><b>Bug:</b> दूसरा thread <b>partially-constructed</b> Singleton पा सकता है।</p><p><b>क्यों:</b> <code class='inline'>instance = new Singleton()</code> atomic नहीं — <code class='inline'>instance</code> की write constructor खत्म होने से पहले <b>reorder</b> हो सकती है। <code class='inline'>volatile</code> बिना दूसरा thread non-null पर आधा-बना object देख सकता है।</p><p><b>Fix:</b> <code class='inline'>private static volatile Singleton instance;</code> (या बेहतर — enum / holder-class singleton)।</p>"
+},
+{
+  id: "conc-9", category: "Concurrency & Threads", difficulty: "medium",
+  question: "Calling wait() — why the IllegalMonitorStateException?",
+  codeTop: "Object lock = new Object();\nlock.wait(); // ?",
+  answerEn: "<p><b>Output:</b> <b>IllegalMonitorStateException</b> at runtime.</p><p><b>Why:</b> <code class='inline'>wait()</code>, <code class='inline'>notify()</code>, and <code class='inline'>notifyAll()</code> must be called while <b>holding that object's monitor</b> — i.e. inside a <code class='inline'>synchronized (lock)</code> block. Here no lock is held.</p><p><b>Fix (and always guard with a loop):</b></p>",
+  answerHi: "<p><b>Output:</b> runtime पर <b>IllegalMonitorStateException</b>।</p><p><b>क्यों:</b> <code class='inline'>wait()</code>, <code class='inline'>notify()</code>, <code class='inline'>notifyAll()</code> को उस object का <b>monitor पकड़े हुए</b> ही call करना होता है — यानी <code class='inline'>synchronized (lock)</code> block के अंदर। यहाँ कोई lock नहीं।</p><p><b>Fix (और हमेशा loop में guard करो):</b></p>",
+  code: "synchronized (lock) {\n    while (!condition) {\n        lock.wait();   // releases lock, waits, re-acquires\n    }\n}"
+},
+{
+  id: "conc-10", category: "Concurrency & Threads", difficulty: "medium",
+  question: "Removing from a list while iterating — what happens?",
+  codeTop: "List<Integer> list = new ArrayList<>(List.of(1, 2, 3, 4));\nfor (Integer x : list) {\n    if (x == 2) list.remove(x);  // modify during for-each\n}",
+  answerEn: "<p><b>Output:</b> <b>ConcurrentModificationException</b>.</p><p><b>Why:</b> the enhanced <code class='inline'>for</code> loop uses an <b>Iterator</b>, which is <b>fail-fast</b> — it detects that the list's <code class='inline'>modCount</code> changed underneath it and throws (this happens even single-threaded).</p><p><b>Fix:</b> use <code class='inline'>Iterator.remove()</code>, or <code class='inline'>list.removeIf(x -&gt; x == 2)</code>.</p>",
+  answerHi: "<p><b>Output:</b> <b>ConcurrentModificationException</b>।</p><p><b>क्यों:</b> enhanced <code class='inline'>for</code> loop <b>Iterator</b> use करता है जो <b>fail-fast</b> है — list का <code class='inline'>modCount</code> बदला देखकर exception फेंकता है (single-threaded में भी)।</p><p><b>Fix:</b> <code class='inline'>Iterator.remove()</code>, या <code class='inline'>list.removeIf(x -&gt; x == 2)</code>।</p>"
 }
 
 ];

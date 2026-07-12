@@ -123,6 +123,7 @@
     var showEn = prefs.lang === "both" || prefs.lang === "en";
     var showHi = prefs.lang === "both" || prefs.lang === "hi";
     var out = "";
+    if (item.codeTop) out += '<div class="code-q"><span class="answer-label label-code">Code — what\'s the output?</span><pre>' + esc(item.codeTop) + '</pre></div>';
     if (showEn) out += '<div class="answer-block"><span class="answer-label label-en">English</span>' + item.answerEn + '</div>';
     if (item.code) out += '<pre>' + esc(item.code) + '</pre>';
     if (showHi) out += '<div class="answer-block"><span class="answer-label label-hi">हिंदी</span>' + item.answerHi + '</div>';

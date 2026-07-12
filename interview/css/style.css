@@ -134,6 +134,8 @@ h1 { font-size: 19px; color: var(--primary); }
 }
 .label-en { background: rgba(36,113,163,.12); color: var(--primary-2); }
 .label-hi { background: rgba(22,160,133,.12); color: var(--accent); }
+.label-code { background: rgba(230,126,34,.15); color: var(--revisit); }
+.code-q { margin-top: 14px; }
 .answer-block p { margin-bottom: 8px; }
 .answer-block ul { margin: 6px 0 10px 20px; }
 .answer-block li { margin-bottom: 4px; }

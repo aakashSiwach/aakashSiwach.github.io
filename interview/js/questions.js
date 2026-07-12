@@ -746,6 +746,108 @@ var QUESTIONS = [
   codeTop: "System.out.println(0.1 + 0.2);        // ?\nSystem.out.println(0.1 + 0.2 == 0.3); // ?",
   answerEn: "<p><b>Output:</b> <code class='inline'>0.30000000000000004</code>, then <code class='inline'>false</code>.</p><p><b>Why:</b> <code class='inline'>double</code>/<code class='inline'>float</code> use binary floating point (IEEE 754) which <b>can't represent</b> decimals like 0.1 exactly, so tiny rounding errors accumulate.</p><p><b>Fix:</b> for money/precision use <code class='inline'>BigDecimal</code> (constructed from a String), or compare with a small epsilon tolerance.</p>",
   answerHi: "<p><b>Output:</b> <code class='inline'>0.30000000000000004</code>, फिर <code class='inline'>false</code>।</p><p><b>क्यों:</b> <code class='inline'>double</code>/<code class='inline'>float</code> binary floating point (IEEE 754) use करते हैं जो 0.1 जैसे decimals को <b>exactly represent नहीं</b> कर सकते, इसलिए छोटे rounding errors जमा होते हैं।</p><p><b>Fix:</b> money/precision के लिए <code class='inline'>BigDecimal</code> (String से बनाओ), या छोटी epsilon tolerance से compare करो।</p>"
+},
+
+/* ============================ SPRING SECURITY & JWT ============================ */
+{
+  id: "sec-1", category: "Spring Security", difficulty: "easy",
+  question: "Authentication vs Authorization?",
+  answerEn: "<p><b>Authentication</b> = <i>who are you?</i> — verifying identity (username/password, token, OAuth). <b>Authorization</b> = <i>what are you allowed to do?</i> — checking permissions/roles for a resource.</p><p>Order: authenticate first, then authorize. In Spring Security, authentication populates the <code class='inline'>SecurityContext</code>; authorization is enforced by URL rules or <code class='inline'>@PreAuthorize</code>.</p>",
+  answerHi: "<p><b>Authentication</b> = <i>आप कौन हैं?</i> — identity verify करना (username/password, token, OAuth)। <b>Authorization</b> = <i>आपको क्या करने की अनुमति है?</i> — resource के लिए permissions/roles check करना।</p><p>क्रम: पहले authenticate, फिर authorize। Spring Security में authentication <code class='inline'>SecurityContext</code> भरता है; authorization URL rules या <code class='inline'>@PreAuthorize</code> से लगती है।</p>"
+},
+{
+  id: "sec-2", category: "Spring Security", difficulty: "medium",
+  question: "How does the Spring Security filter chain work?",
+  answerEn: "<p>Spring Security is a chain of <b>servlet filters</b> that runs before your controller. Each request passes through filters in order:</p><ul><li><b>Authentication filters</b> (e.g. a custom JWT filter, or <code class='inline'>UsernamePasswordAuthenticationFilter</code>) extract and validate credentials.</li><li>On success, an <code class='inline'>Authentication</code> object is stored in the <code class='inline'>SecurityContextHolder</code>.</li><li><b>Authorization filter</b> (<code class='inline'>AuthorizationFilter</code>) checks access rules; unauthorized → 401/403.</li></ul><p>For a JWT API you add your JWT filter before the username/password filter and keep sessions stateless.</p>",
+  answerHi: "<p>Spring Security <b>servlet filters</b> की एक chain है जो controller से पहले चलती है। हर request filters से क्रम में गुज़रती है:</p><ul><li><b>Authentication filters</b> (जैसे custom JWT filter या <code class='inline'>UsernamePasswordAuthenticationFilter</code>) credentials निकालकर validate करते हैं।</li><li>Success पर <code class='inline'>Authentication</code> object <code class='inline'>SecurityContextHolder</code> में store होता है।</li><li><b>Authorization filter</b> access rules check करता है; unauthorized → 401/403।</li></ul><p>JWT API में अपना JWT filter username/password filter से पहले जोड़ो और sessions stateless रखो।</p>"
+},
+{
+  id: "sec-3", category: "Spring Security", difficulty: "medium",
+  question: "JWT structure, and access vs refresh tokens?",
+  answerEn: "<p>A <b>JWT</b> has three base64 parts: <b>Header</b> (alg), <b>Payload</b> (claims: sub, roles, exp), <b>Signature</b> (HMAC/RSA over header+payload). The signature proves integrity — it isn't encryption, so never put secrets in the payload.</p><p><b>Access token</b> — short-lived (5–15 min), sent as <code class='inline'>Bearer</code> on every request. <b>Refresh token</b> — long-lived, stored securely (httpOnly cookie), used only to mint a new access token when it expires. This limits the blast radius if an access token leaks.</p>",
+  answerHi: "<p><b>JWT</b> के तीन base64 हिस्से: <b>Header</b> (alg), <b>Payload</b> (claims: sub, roles, exp), <b>Signature</b> (header+payload पर HMAC/RSA)। Signature integrity साबित करता है — ये encryption नहीं, इसलिए payload में secrets मत रखो।</p><p><b>Access token</b> — short-lived (5–15 min), हर request में <code class='inline'>Bearer</code> के रूप में। <b>Refresh token</b> — long-lived, safely (httpOnly cookie) रखा, सिर्फ़ नया access token बनाने के लिए। इससे leak का नुकसान सीमित रहता है।</p>"
+},
+{
+  id: "sec-4", category: "Spring Security", difficulty: "medium",
+  question: "How do you implement role-based and method-level security?",
+  answerEn: "<p>Store roles/authorities in the token or user details. Then enforce at two levels:</p><ul><li><b>URL-level:</b> in the security config — <code class='inline'>.requestMatchers(\"/admin/**\").hasRole(\"ADMIN\")</code>.</li><li><b>Method-level:</b> enable <code class='inline'>@EnableMethodSecurity</code> and annotate methods with <code class='inline'>@PreAuthorize(\"hasRole('ADMIN')\")</code> or <code class='inline'>@PreAuthorize(\"hasAuthority('payment:write')\")</code>.</li></ul><p>Prefer fine-grained <b>authorities/permissions</b> over broad roles for flexibility.</p>",
+  answerHi: "<p>Roles/authorities token या user details में रखो। फिर दो स्तरों पर लागू करो:</p><ul><li><b>URL-level:</b> security config में — <code class='inline'>.requestMatchers(\"/admin/**\").hasRole(\"ADMIN\")</code>।</li><li><b>Method-level:</b> <code class='inline'>@EnableMethodSecurity</code> on करके methods पर <code class='inline'>@PreAuthorize(\"hasRole('ADMIN')\")</code> या <code class='inline'>@PreAuthorize(\"hasAuthority('payment:write')\")</code>।</li></ul><p>Flexibility के लिए broad roles की जगह fine-grained <b>authorities/permissions</b> बेहतर।</p>"
+},
+{
+  id: "sec-5", category: "Spring Security", difficulty: "hard",
+  question: "Common web security vulnerabilities and how do you prevent them?",
+  answerEn: "<ul><li><b>SQL Injection</b> — use parameterized queries/JPA, never string-concatenate SQL.</li><li><b>XSS</b> — escape/encode output, use a Content-Security-Policy.</li><li><b>CSRF</b> — enable CSRF tokens for browser sessions (can disable for stateless token APIs).</li><li><b>Broken auth</b> — hash passwords with <b>BCrypt</b>, enforce strong policies, short token expiry.</li><li><b>Sensitive data</b> — TLS in transit, encryption at rest, no secrets in logs/JWT.</li><li><b>Broken access control</b> — verify authorization on every request server-side, never trust the client.</li></ul>",
+  answerHi: "<ul><li><b>SQL Injection</b> — parameterized queries/JPA use करो, SQL में string concat कभी नहीं।</li><li><b>XSS</b> — output escape/encode करो, Content-Security-Policy लगाओ।</li><li><b>CSRF</b> — browser sessions के लिए CSRF tokens (stateless token API में disable कर सकते हैं)।</li><li><b>Broken auth</b> — passwords <b>BCrypt</b> से hash, strong policy, short token expiry।</li><li><b>Sensitive data</b> — transit में TLS, rest पर encryption, logs/JWT में secrets नहीं।</li><li><b>Broken access control</b> — हर request पर server-side authorization check, client पर भरोसा नहीं।</li></ul>"
+},
+
+/* ============================ KAFKA ============================ */
+{
+  id: "kafka-1", category: "Kafka", difficulty: "medium",
+  question: "Explain Kafka core concepts: topic, partition, offset, broker, consumer group.",
+  answerEn: "<ul><li><b>Topic</b> — a named stream of records (like a category/log).</li><li><b>Partition</b> — a topic is split into partitions for parallelism; each is an ordered, append-only log.</li><li><b>Offset</b> — a record's sequential position within a partition; consumers track it to know what they've read.</li><li><b>Broker</b> — a Kafka server storing partitions; a cluster has many.</li><li><b>Consumer group</b> — consumers sharing a group id; each partition is consumed by exactly one member, enabling horizontal scaling.</li></ul>",
+  answerHi: "<ul><li><b>Topic</b> — records की named stream (category/log जैसी)।</li><li><b>Partition</b> — parallelism के लिए topic partitions में बँटता है; हर एक ordered, append-only log।</li><li><b>Offset</b> — partition में record की sequential position; consumers इसे track करके जानते हैं क्या पढ़ा।</li><li><b>Broker</b> — partitions store करने वाला Kafka server; cluster में कई।</li><li><b>Consumer group</b> — same group id वाले consumers; हर partition सिर्फ़ एक member पढ़ता है, इससे horizontal scaling।</li></ul>"
+},
+{
+  id: "kafka-2", category: "Kafka", difficulty: "medium",
+  question: "How does Kafka guarantee ordering and scale at the same time?",
+  answerEn: "<p>Kafka guarantees ordering <b>only within a partition</b>, not across a whole topic. Records with the same <b>key</b> hash to the same partition, so all events for one entity (e.g. one <code class='inline'>orderId</code>) stay ordered.</p><p><b>Scaling:</b> more partitions = more parallel consumers (one per partition in a group). Trade-off: you can't have more active consumers than partitions, and adding partitions later can change key→partition mapping. Choose partition count and keys carefully.</p>",
+  answerHi: "<p>Kafka ordering सिर्फ़ <b>एक partition के अंदर</b> guarantee करता है, पूरे topic में नहीं। Same <b>key</b> वाले records same partition में जाते हैं, इसलिए एक entity (जैसे एक <code class='inline'>orderId</code>) के सारे events ordered रहते हैं।</p><p><b>Scaling:</b> ज़्यादा partitions = ज़्यादा parallel consumers (group में एक per partition)। Trade-off: partitions से ज़्यादा active consumers नहीं हो सकते, और बाद में partitions बढ़ाने से key→partition mapping बदल सकती है। Partition count और keys सोच-समझकर चुनो।</p>"
+},
+{
+  id: "kafka-3", category: "Kafka", difficulty: "hard",
+  question: "Kafka delivery semantics: at-most-once, at-least-once, exactly-once?",
+  answerEn: "<ul><li><b>At-most-once</b> — commit offset before processing; if it crashes, the message is lost. Fastest, least safe.</li><li><b>At-least-once</b> (most common) — process first, then commit offset; a crash re-delivers, so consumers must be <b>idempotent</b>.</li><li><b>Exactly-once</b> — via idempotent producers + transactions (<code class='inline'>read-process-write</code> in one transaction). Stronger but with overhead.</li></ul><p>In practice, most systems use at-least-once + idempotent consumers.</p>",
+  answerHi: "<ul><li><b>At-most-once</b> — process से पहले offset commit; crash हो तो message खो जाता है। सबसे तेज़, कम safe।</li><li><b>At-least-once</b> (सबसे common) — पहले process, फिर offset commit; crash पर re-delivery, इसलिए consumers <b>idempotent</b> हों।</li><li><b>Exactly-once</b> — idempotent producers + transactions से (<code class='inline'>read-process-write</code> एक transaction में)। मज़बूत पर overhead।</li></ul><p>असल में ज़्यादातर systems at-least-once + idempotent consumers use करते हैं।</p>"
+},
+{
+  id: "kafka-4", category: "Kafka", difficulty: "medium",
+  question: "How do you handle failed messages and retries in Kafka?",
+  answerEn: "<ul><li><b>Retry with backoff</b> — retry transient failures a bounded number of times (Spring Kafka's <code class='inline'>DefaultErrorHandler</code> / <code class='inline'>RetryTemplate</code>).</li><li><b>Dead Letter Topic (DLT)</b> — after max retries, publish the record to a DLT for later inspection/replay instead of blocking the partition.</li><li><b>Idempotency</b> — since re-delivery is expected, make processing safe to repeat.</li><li>Avoid blocking retries that stall the whole partition; use non-blocking retry topics for high throughput.</li></ul>",
+  answerHi: "<ul><li><b>Retry with backoff</b> — transient failures को सीमित बार retry (Spring Kafka का <code class='inline'>DefaultErrorHandler</code>/<code class='inline'>RetryTemplate</code>)।</li><li><b>Dead Letter Topic (DLT)</b> — max retries के बाद record को DLT में भेजो (inspection/replay के लिए), partition block न हो।</li><li><b>Idempotency</b> — re-delivery तय है, इसलिए processing दोबारा-safe बनाओ।</li><li>पूरे partition को रोकने वाले blocking retries से बचो; high throughput के लिए non-blocking retry topics।</li></ul>"
+},
+
+/* ============================ CODING PROBLEMS (more) ============================ */
+{
+  id: "code-6", category: "Coding Problems", difficulty: "easy",
+  question: "Valid parentheses — is the bracket string balanced?",
+  answerEn: "<p>Use a <b>stack</b>: push opening brackets; on a closing bracket, the top must be its matching opener, else invalid. At the end the stack must be empty. O(n) time, O(n) space.</p>",
+  answerHi: "<p><b>Stack</b> use करो: opening brackets push करो; closing पर top उसका matching opener होना चाहिए, वरना invalid। अंत में stack खाली होना चाहिए। O(n) time, O(n) space।</p>",
+  code: "boolean isValid(String s) {\n    Deque<Character> st = new ArrayDeque<>();\n    Map<Character,Character> m = Map.of(')','(', ']','[', '}','{');\n    for (char c : s.toCharArray()) {\n        if (m.containsValue(c)) st.push(c);\n        else if (st.isEmpty() || st.pop() != m.get(c)) return false;\n    }\n    return st.isEmpty();\n}"
+},
+{
+  id: "code-7", category: "Coding Problems", difficulty: "medium",
+  question: "Maximum subarray sum (Kadane's algorithm).",
+  answerEn: "<p>Find the contiguous subarray with the largest sum. <b>Kadane's:</b> track the best sum ending at the current index; either extend the previous subarray or start fresh at the current element. Keep a running max. O(n) time, O(1) space.</p>",
+  answerHi: "<p>सबसे बड़ी sum वाला contiguous subarray ढूँढो। <b>Kadane's:</b> current index पर खत्म होने वाली best sum track करो; या तो पिछले subarray को बढ़ाओ या current element से नया शुरू करो। Running max रखो। O(n) time, O(1) space।</p>",
+  code: "int maxSubArray(int[] a) {\n    int best = a[0], cur = a[0];\n    for (int i = 1; i < a.length; i++) {\n        cur = Math.max(a[i], cur + a[i]);\n        best = Math.max(best, cur);\n    }\n    return best;\n}"
+},
+{
+  id: "code-8", category: "Coding Problems", difficulty: "easy",
+  question: "Implement binary search.",
+  answerEn: "<p>On a <b>sorted</b> array, repeatedly halve the search range: compare the middle element to the target and discard the half that can't contain it. O(log n) time. Use <code class='inline'>mid = low + (high - low)/2</code> to avoid integer overflow.</p>",
+  answerHi: "<p><b>Sorted</b> array पर बार-बार range आधी करो: middle element को target से compare करो और जो आधा हिस्सा हो नहीं सकता उसे हटाओ। O(log n) time। Overflow से बचने को <code class='inline'>mid = low + (high - low)/2</code>।</p>",
+  code: "int binarySearch(int[] a, int target) {\n    int lo = 0, hi = a.length - 1;\n    while (lo <= hi) {\n        int mid = lo + (hi - lo) / 2;\n        if (a[mid] == target) return mid;\n        else if (a[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}"
+},
+{
+  id: "code-9", category: "Coding Problems", difficulty: "medium",
+  question: "First non-repeating character in a string.",
+  answerEn: "<p>Two passes with a frequency map: first count each character, then return the first one with count 1. Using a <code class='inline'>LinkedHashMap</code> preserves insertion order. O(n) time.</p>",
+  answerHi: "<p>Frequency map के साथ दो pass: पहले हर character count करो, फिर पहला जिसका count 1 हो वो लौटाओ। <code class='inline'>LinkedHashMap</code> insertion order रखता है। O(n) time।</p>",
+  code: "char firstUnique(String s) {\n    Map<Character,Integer> f = new LinkedHashMap<>();\n    for (char c : s.toCharArray()) f.merge(c, 1, Integer::sum);\n    for (var e : f.entrySet()) if (e.getValue() == 1) return e.getKey();\n    return '_'; // none\n}"
+},
+{
+  id: "code-10", category: "Coding Problems", difficulty: "medium",
+  question: "Detect a cycle in a linked list (Floyd's algorithm).",
+  answerEn: "<p>Use <b>two pointers</b>: <code class='inline'>slow</code> moves one step, <code class='inline'>fast</code> moves two. If there's a cycle they eventually meet; if <code class='inline'>fast</code> reaches null, there's no cycle. O(n) time, O(1) space — no extra set needed.</p>",
+  answerHi: "<p><b>दो pointers</b>: <code class='inline'>slow</code> एक कदम, <code class='inline'>fast</code> दो कदम। Cycle हो तो कभी मिलेंगे; <code class='inline'>fast</code> null पर पहुँचे तो cycle नहीं। O(n) time, O(1) space — extra set की ज़रूरत नहीं।</p>",
+  code: "boolean hasCycle(Node head) {\n    Node slow = head, fast = head;\n    while (fast != null && fast.next != null) {\n        slow = slow.next;\n        fast = fast.next.next;\n        if (slow == fast) return true;\n    }\n    return false;\n}"
+},
+{
+  id: "code-11", category: "Coding Problems", difficulty: "medium",
+  question: "Climbing stairs — how many ways to reach step n? (DP intro)",
+  answerEn: "<p>You can climb 1 or 2 steps at a time. Ways to reach step n = ways(n-1) + ways(n-2) — the <b>Fibonacci</b> recurrence. Solve bottom-up with two variables instead of recursion to avoid exponential time. O(n) time, O(1) space.</p>",
+  answerHi: "<p>एक बार में 1 या 2 step चढ़ सकते हैं। Step n तक ways = ways(n-1) + ways(n-2) — यानी <b>Fibonacci</b> recurrence। Recursion की जगह bottom-up दो variables से हल करो ताकि exponential time न हो। O(n) time, O(1) space।</p>",
+  code: "int climbStairs(int n) {\n    int a = 1, b = 1;\n    for (int i = 2; i <= n; i++) {\n        int c = a + b;\n        a = b; b = c;\n    }\n    return b;\n}"
 }
 
 ];

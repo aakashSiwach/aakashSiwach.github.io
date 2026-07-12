@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Interview Study Plan — Aakash Siwach</title>
+<meta name="description" content="Offline interview prep: Java, Spring Boot, Microservices, React. English + Hindi. Progress tracked in your browser." />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🎯</span>
+    <div>
+      <h1>Interview Study Plan</h1>
+      <p class="subtitle">Aakash Siwach · Java · Spring Boot · Microservices · React</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <a href="../" class="btn" title="Back to portfolio">← Portfolio</a>
+    <button id="langToggle" class="btn" title="Toggle Hindi/English answers">🌐 <span id="langLabel">EN + हिं</span></button>
+    <button id="themeToggle" class="btn" title="Toggle dark mode">🌙</button>
+  </div>
+</header>
+
+<section class="dashboard">
+  <div class="progress-card">
+    <div class="progress-head">
+      <span>Overall Progress</span>
+      <span id="overallPct" class="pct">0%</span>
+    </div>
+    <div class="bar"><div id="overallBar" class="bar-fill"></div></div>
+    <div class="stats">
+      <span><b id="doneCount">0</b> done</span>
+      <span><b id="totalCount">0</b> total</span>
+      <span><b id="revisitCount">0</b> to revisit</span>
+    </div>
+  </div>
+  <div class="mini-actions">
+    <button id="resetProgress" class="btn danger" title="Clear all progress">♻ Reset progress</button>
+    <button id="exportProgress" class="btn" title="Backup progress to a file">⤓ Export</button>
+    <label class="btn" title="Restore progress from a backup file">⤒ Import<input id="importProgress" type="file" accept="application/json" hidden></label>
+  </div>
+</section>
+
+<nav class="controls">
+  <input id="search" type="search" placeholder="🔍 Search questions, topics, keywords…" />
+  <div class="filters" id="statusFilters">
+    <button class="chip active" data-status="all">All</button>
+    <button class="chip" data-status="todo">To do</button>
+    <button class="chip" data-status="done">Done</button>
+    <button class="chip" data-status="revisit">Revisit</button>
+  </div>
+</nav>
+
+<main class="layout">
+  <aside class="sidebar">
+    <h3>Topics</h3>
+    <ul id="categoryList" class="cat-list"></ul>
+  </aside>
+
+  <section class="content">
+    <div id="questionContainer"></div>
+    <p id="emptyState" class="empty" hidden>No questions match your filters.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Built for offline prep — no login, no internet needed. Your progress is saved locally in this browser.</p>
+  <p class="tip">Tip: bookmark this page. On mobile, use “Add to Home Screen”.</p>
+</footer>
+
+<script src="js/questions.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
